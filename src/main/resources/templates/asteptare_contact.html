@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>404 HTML Template by Colorlib</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet"> 
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/styleerr.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404">
+				<h1><span>Waiting</span></h1>
+			</div>
+			<p>Click the finish button when you are ready to terminate the conexion</p>
+			<form action="#" th:action="@{/contactFinalizat}" th:object="${contact}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+            
+            
+            
+            
+        </form>
+				      
+				      <br><br><br><br>
+				      
+				      <table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Contact ID</th>
+					<th>Appellant Number</th>
+					<th>Receiver Number</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+				</tr>
+				
+				
+				
+			</thead>
+			
+			<tbody>
+				<tr th:each="client : ${listContacts}">
+					<td th:text="${client.id_contact}">Contact ID</td>
+					<td th:text="${client.appellant_number}">Appellant Number</td>
+					<td th:text="${client.receiver_number}">Receiver Number</td>
+					<td th:text="${client.start_date}">Start Date</td>
+					<td th:text="${client.end_date}">End Date</td>
+					<!-- <td>
+						
+						<a th:href="@{/clients/getOne/(id=${client.id})}" class="btn btn-warning">Edit</a>
+						<a th:href="@{/clients/delete/(id=${client.id})}" class="btn btn-danger" id="deleteButton">Delete</a>
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSubModal">Add New Subscription</button>-->
+						
+						<!-- <a th:href="@{'/clients/subscriptions/' + ${client.id}}">Subscriptions</a>
+						<a th:href="@{'/clients/charges/' + ${client.id}}">Extra Charges</a>
+						
+						
+						
+					</td>-->
+				</tr>
+			</tbody>
+			
+		</table>
+				
+		</div>
+	</div>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

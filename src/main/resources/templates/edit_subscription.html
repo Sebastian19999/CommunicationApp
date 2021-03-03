@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit Client</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Edit Client</h1>
+        <br />
+        <form action="#" th:action="@{/clients/subscriptions/saveSub}" th:object="${subscription}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Subscription ID:</td>
+                    <td><input type="text" th:field="*{id_subscription}" readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}" /></td>
+                </tr>
+                <tr>
+                    <td>Network Minutes Included:</td>
+                    <td><input type="text" th:field="*{network_minutes_included}" /></td>
+                </tr>
+                <tr>
+                    <td>Network SMS Included:</td>
+                    <td><input type="text" th:field="*{network_sms_included}" /></td>
+                </tr>
+                <tr>
+                    <td>Minutes Included:</td>
+                    <td><input type="text" th:field="*{minutes_included}" /></td>
+                </tr> 
+                <tr>
+                    <td>SMS Included:</td>
+                    <td><input type="text" th:field="*{sms_included}" /></td>
+                </tr> 
+                <tr>
+                    <td>Traffic Included:</td>
+                    <td><input type="text" th:field="*{traffic_included}" /></td>
+                </tr>                            
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

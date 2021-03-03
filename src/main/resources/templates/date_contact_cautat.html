@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+
+<meta charset="ISO-8859-1">
+<title>Clients List</title>
+
+</head>
+<body>
+
+<h5>Welcome, <span th:text="${username}">Welcom guest!</span></h5>
+
+
+
+	 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <h5>Welcome, <span th:text="${username}">Welcom guest!</span></h5>
+      
+    </form>
+  </div>
+</nav>
+
+
+
+
+
+	<h2>List of Clients</h2>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New Client</button>
+	
+	<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Client ID</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Phone</th>
+					<th>Balance</th>
+					<th>Actions</th>
+				</tr>
+				
+				
+				
+			</thead>
+			
+			<tbody>
+				<tr th:each="client : ${listClients}">
+					<td th:text="${client.id}">Client ID</td>
+					<td th:text="${client.name}">Name</td>
+					<td th:text="${client.address}">Address</td>
+					<td th:text="${client.phone}">Phone</td>
+					<td th:text="${client.balance}">Balance</td>
+					<td>
+						
+						<a th:href="@{/clients/getOne/(id=${client.id})}" class="btn btn-warning">Edit</a>
+						<a th:href="@{/clients/delete/(id=${client.id})}" class="btn btn-danger" id="deleteButton">Delete</a>
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSubModal">Add New Subscription</button>-->
+						
+						<a th:href="@{'/clients/subscriptions/' + ${client.id}}">Subscriptions</a>
+						<a th:href="@{'/clients/charges/' + ${client.id}}">Extra Charges</a>
+						
+						
+						
+					</td>
+				</tr>
+			</tbody>
+			
+		</table>
+		
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Client ID</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Phone</th>
+					<th>Balance</th>
+					<th>Actions</th>
+				</tr>
+				
+				
+				
+			</thead>
+			
+			<tbody>
+				<tr th:each="client : ${listClients}">
+					<td th:text="${client.id}">Client ID</td>
+					<td th:text="${client.name}">Name</td>
+					<td th:text="${client.address}">Address</td>
+					<td th:text="${client.phone}">Phone</td>
+					<td th:text="${client.balance}">Balance</td>
+					<td>
+						
+						<a th:href="@{/clients/getOne/(id=${client.id})}" class="btn btn-warning">Edit</a>
+						<a th:href="@{/clients/delete/(id=${client.id})}" class="btn btn-danger" id="deleteButton">Delete</a>
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSubModal">Add New Subscription</button>-->
+						
+						<a th:href="@{'/clients/subscriptions/' + ${client.id}}">Subscriptions</a>
+						<a th:href="@{'/clients/charges/' + ${client.id}}">Extra Charges</a>
+						
+						
+						
+					</td>
+				</tr>
+			</tbody>
+			
+		</table>
+		
+		
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <form th:action="@{/clients/addNew}" method="post">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Client</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Id:</label>
+            <input type="text" class="form-control" id="recipient-name" name="id">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="recipient-name" name="address">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <input type="text" class="form-control" id="recipient-name" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Balance:</label>
+            <input type="text" class="form-control" id="recipient-name" name="balance">
+          </div>
+          
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+   </form>
+</div>
+
+
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+		  <form th:action="@{/clients/update}" method="put">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Client</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Id:</label>
+            <input type="text" class="form-control" id="idEdit" name="id">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="nameEdit" name="name">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="addressEdit" name="address">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <input type="text" class="form-control" id="phoneEdit" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Balance:</label>
+            <input type="text" class="form-control" id="balanceEdit" name="balance">
+          </div>
+          
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Client</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This action will delete this client. Are you sure you want to delete it?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="" class="btn btn-primary" id="delRef">Delete</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+   </form>
+</div>
+
+
+
+
+
+
+
+		
+</body>
+</html>

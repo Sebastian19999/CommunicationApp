@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="/webjars/bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
+
+<meta charset="ISO-8859-1">
+<title>Clients List</title>
+
+</head>
+<body>
+
+<h5>Welcome, <span th:text="${username}">Welcom guest!</span></h5>
+
+
+	
+
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://localhost:8080/index">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cautareClient/search">Date Lunare</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cautareClient/search" tabindex="-1" aria-disabled="true">Date Lunare</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Simulatoare</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="/generareConexiune/getAll">Contact</a>
+          <a class="dropdown-item" href="/cautareClient/messenger">Chat Room</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <form th:action="@{/clients/exit}" class="form-inline my-2 my-lg-0">
+      <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+      <h5>Welcome, <span th:text="${username}">Welcom guest!</span></h5>
+      
+    </form>
+  </div>
+</nav>
+
+
+
+
+
+	<h2>Client Data</h2>
+	
+	<a th:href="@{'/cautareClient/createPdf'}" style="float:right;"><img th:src="@{/images/pdfimg.png}" style="width:40px;"></a>
+	
+	
+	<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Client Phone Number</th>
+					<th>Month</th>
+					<th>Network Minutes Consumed</th>
+					<th>Minutes Consumed</th>
+					<th>Network SMS Consumed</th>
+					<th>SMS Consumed</th>
+					<th>Network Minutes Traffic</th>
+				</tr>
+				
+				<!--<form th:action="@{/clients/getAll}" method="get">
+				
+					<input id="txtSearch" type="text" name="keyword">
+					<button type="submit">Submit</button>
+				      
+				      
+				</form>-->
+				
+			</thead>
+			
+			<tbody>
+				<tr invoice : ${listInvoices}>
+					<td th:text="${invoice.phone_number}">Client Phone Number</td>
+					<td th:text="${invoice.current_month}">Month</td>
+					<td th:text="${invoice.minutes_in}">Network Minutes Consumed</td>
+					<td th:text="${invoice.minutes_out}">Minutes Consumed</td>
+					<td th:text="${invoice.total_sms_in}">Network SMS Consumed</td>
+					<td th:text="${invoice.total_sms_out}">SMS Consumed</td>
+					<td th:text="${invoice.minutes_traffic}">Network Minutes Traffic</td>
+					<!-- <td>
+						
+						<a th:href="@{/clients/getOne/(id=${client.id})}" class="btn btn-warning">Edit</a>
+						<a th:href="@{/clients/delete/(id=${client.id})}" class="btn btn-danger" id="deleteButton">Delete</a>
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSubModal">Add New Subscription</button>-->
+						
+						<!-- <a th:href="@{'/clients/subscriptions/' + ${client.id}}">Subscriptions</a>
+						<a th:href="@{'/clients/charges/' + ${client.id}}">Extra Charges</a>
+						
+						
+						
+					</td>-->
+				</tr>
+			</tbody>
+			
+		</table>
+		
+		<h2>Charges: </h2>
+		
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Client Phone Number</th>
+					<th>Month</th>
+					<th>Subscription Monthly Cost</th>
+					<th>Network Minutes</th>
+					<th>Minutes</th>
+					<th>Network SMS</th>
+					<th>SMS</th>
+					<th>Traffic</th>
+				</tr>
+				
+				<!-- <form th:action="@{/clients/getAll}" method="get">
+				
+					<input id="txtSearch" type="text" name="keyword">
+					<button type="submit">Submit</button>
+				      
+				      
+				</form>-->
+				
+			</thead>
+			
+			<tbody>
+				<tr invoice : ${listInvoices}>
+					<td th:text="${invoice.phone_number}">Client Phone Number</td>
+					<td th:text="${invoice.current_month}">Month</td>
+					<td th:text="${invoice.monthly_cost}">Subscription Monthly Cost</td>
+					<td th:text="${invoice.network_minutes_charge}">Network Minutes</td>
+					<td th:text="${invoice.minutes_charge}">Minutes</td>
+					<td th:text="${invoice.network_sms_charge}">Network SMS</td>
+					<td th:text="${invoice.sms_charge}">SMS</td>
+					<td th:text="${invoice.traffic_charge}">Traffic</td>
+					<td>
+						
+						<!-- <a th:href="@{/clients/getOne/(id=${client.id})}" class="btn btn-warning">Edit</a>
+						<a th:href="@{/clients/delete/(id=${client.id})}" class="btn btn-danger" id="deleteButton">Delete</a>
+						<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSubModal">Add New Subscription</button>-->
+						
+						<!-- <a th:href="@{'/clients/subscriptions/' + ${client.id}}">Subscriptions</a>
+						<a th:href="@{'/clients/charges/' + ${client.id}}">Extra Charges</a>
+						-->
+						
+						
+					</td>
+				</tr>
+			</tbody>
+			
+		</table>
+		
+		
+		
+		
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <form th:action="@{/clients/addNew}" method="post">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Client</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Id:</label>
+            <input type="text" class="form-control" id="recipient-name" name="id">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="recipient-name" name="address">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <input type="text" class="form-control" id="recipient-name" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Balance:</label>
+            <input type="text" class="form-control" id="recipient-name" name="balance">
+          </div>
+          
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+   </form>
+</div>
+
+
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+		  <form th:action="@{/clients/update}" method="put">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Client</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Id:</label>
+            <input type="text" class="form-control" id="idEdit" name="id">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="nameEdit" name="name">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="addressEdit" name="address">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone:</label>
+            <input type="text" class="form-control" id="phoneEdit" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Balance:</label>
+            <input type="text" class="form-control" id="balanceEdit" name="balance">
+          </div>
+          
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Client</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This action will delete this client. Are you sure you want to delete it?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="" class="btn btn-primary" id="delRef">Delete</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+   </form>
+</div>
+
+
+
+
+
+
+
+		
+</body>
+</html>

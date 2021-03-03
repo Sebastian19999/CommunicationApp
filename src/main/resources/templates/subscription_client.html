@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit Client</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Client Subscriptions</h1>
+        <br />
+        
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					
+					<th>Subscription ID</th>
+					<th>Subscription Name</th>
+					<th>Monthly Cost</th>
+					<th>Network Minutes Included</th>
+					<th>Network SMS Included</th>
+					<th>Minutes Included</th>
+					<th>SMS Included</th>
+					<th>Traffic Included</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="subscription : ${listSubscriptions}">
+					<td th:text="${subscription.id_subscription}">Subscription ID</td>
+					<td th:text="${subscription.name}">Subscription Name</td>
+					<td th:text="${subscription.monthly_cost}">Monthly Cost</td>
+					<td th:text="${subscription.network_minutes_included}">Network Minutes Included</td>
+					<td th:text="${subscription.network_sms_included}">Network SMS Included</td>
+					<td th:text="${subscription.minutes_included}">Minutes Included</td>
+					<td th:text="${subscription.sms_included}">SMS Included</td>
+					<td th:text="${subscription.traffic_included}">Traffic Included</td>
+					<td>
+						 <a th:href="@{'/clients/editSub/' + ${subscription.id_subscription}}">Edit Subscription</a>
+						
+					</td>
+				</tr>
+			</tbody>
+		</table>
+        
+        
+    </div>
+</body>
+</html>

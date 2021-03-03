@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Extra Charges</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Client Extra Charges</h1>
+        <br />
+        
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					
+					<th>Extra Charge ID</th>
+					<th>Name</th>
+					<th>Network Call</th>
+					<th>Network SMS</th>
+					<th>Basic Call</th>
+					<th>SMS</th>
+					<th>Internet Traffic</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="charge : ${listCharges}">
+					<td th:text="${charge.id_extra}">Extra Charge ID</td>
+					<td th:text="${charge.name_extra}">Name Extra</td>
+					<td th:text="${charge.network_call}">Network Call</td>
+					<td th:text="${charge.network_sms}">Network SMS</td>
+					<td th:text="${charge.basic_call}">Basic Call</td>
+					<td th:text="${charge.sms}">SMS</td>
+					<td th:text="${charge.internet_traffic}">Internet Traffic</td>
+					<td>
+						
+					</td>
+				</tr>
+			</tbody>
+		</table>
+        
+        
+    </div>
+</body>
+</html>
